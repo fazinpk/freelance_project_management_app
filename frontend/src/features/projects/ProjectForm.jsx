@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import FormInput from '../../components/ui/FormInput';
 
-const ProjectForm = ({ clients, defaultValues = {}, onSubmit, loading, error }) => {
+const ProjectForm = ({ clients, defaultValues, onSubmit, loading, error }) => {
   const navigate = useNavigate();
   const {
     register,
@@ -12,11 +12,11 @@ const ProjectForm = ({ clients, defaultValues = {}, onSubmit, loading, error }) 
     reset,
     formState: { errors }
   } = useForm({
-    defaultValues
+    defaultValues: defaultValues || {}
   });
 
   useEffect(() => {
-    reset(defaultValues);
+    if (defaultValues) reset(defaultValues);
   }, [defaultValues, reset]);
 
   useEffect(() => {
