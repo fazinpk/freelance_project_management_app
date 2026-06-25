@@ -30,7 +30,10 @@ DEBUG = config(
     cast=bool
 )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config(
+    'ALLOWED_HOSTS',
+    cast=lambda v: [host.strip() for host in v.split(',')]
+)
 
 
 # Application definition
